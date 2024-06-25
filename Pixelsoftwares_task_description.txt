@@ -1,4 +1,7 @@
-Here is some details i have created in task
+Hello sir,
+I am sorry for late response, I have tried to completed this task, 
+If any place any mistake then sorry.
+*************************************************************** 
 
 1. Project Directory: CI
    URL: http://localhost/ci/ 
@@ -11,7 +14,8 @@ Here is some details i have created in task
     Directory: "Application/config/route.php"  
     Route File: $route['task'] = 'LivePrice/index';
     
-Output Image:  https://github.com/aloktechgyan/ci_task/blob/main/OUTPUT/task_output.png
+    Screenshort: 
+
 ********************************[ for testing ]*********************************
 2. Created Table:
    DB Name: ci_db
