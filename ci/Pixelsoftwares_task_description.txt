@@ -11,7 +11,7 @@ Here is some details i have created in task
     Directory: "Application/config/route.php"  
     Route File: $route['task'] = 'LivePrice/index';
     
-
+Output Image:  https://github.com/aloktechgyan/ci_task/blob/main/OUTPUT/task_output.png
 ********************************[ for testing ]*********************************
 2. Created Table:
    DB Name: ci_db
