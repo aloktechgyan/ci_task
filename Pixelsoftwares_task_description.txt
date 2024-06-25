@@ -14,7 +14,7 @@ If any place any mistake then sorry.
     Directory: "Application/config/route.php"  
     Route File: $route['task'] = 'LivePrice/index';
     
-    Screenshort: 
+    Screenshort: https://github.com/aloktechgyan/ci_task/blob/main/Task%20OUTPUT/task_output.png
 
 ********************************[ for testing ]*********************************
 2. Created Table:
