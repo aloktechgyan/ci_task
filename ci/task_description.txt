@@ -1,0 +1,23 @@
+Here is some destial i have created in task
+
+1. Created File
+    Controller : LivePrice.php
+    Model      : LivePrice_model.php
+    View       : index.php
+
+    Directory: "Application/config/route.php"  
+    Route File: $route['task'] = 'LivePrice/index';
+    
+2. Created Table:
+   DB Name: ci_db
+   Table  : live_prices
+   
+CREATE TABLE live_prices (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    symbol VARCHAR(20) NOT NULL,
+    bid_price DECIMAL(10, 2) NOT NULL,
+    bid_qty DECIMAL(10, 3) NOT NULL,
+    ask_price DECIMAL(10, 2) NOT NULL,
+    ask_qty DECIMAL(10, 3) NOT NULL,
+    time_updated TIMESTAMP DEFAULT CURRENT_TIMESTAMP ON UPDATE CURRENT_TIMESTAMP
+);
