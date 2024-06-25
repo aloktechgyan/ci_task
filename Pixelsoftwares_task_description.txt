@@ -1,6 +1,6 @@
 Hello sir,
-I am sorry for late response, I have tried to completed this task, 
-If any place any mistake then sorry.
+I am sorry for the late response, I have tried to complete this task, 
+If there is any mistake then sorry.
 *************************************************************** 
 
 1. Project Directory: CI
