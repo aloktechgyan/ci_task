@@ -6,7 +6,7 @@ If there is any mistake then sorry.
 
 1. Project Directory: CI
    URL: http://localhost/ci/ 
-
+   
 2. Created File
     Controller : LivePrice.php
     Model      : LivePrice_model.php
@@ -17,8 +17,10 @@ If there is any mistake then sorry.
     
     Screenshort: https://github.com/aloktechgyan/ci_task/blob/main/Task%20OUTPUT/task_output.png
 
+3. Latest Price Request URL:  http://localhost/ci/liveprice/update_price/BTCUSDT
+
 ********************************[ for testing ]*********************************
-3. Created Table:
+4. Created Table:
    DB Name: ci_db
    Table  : live_prices
 
