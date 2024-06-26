@@ -39,6 +39,8 @@
 
     <script>
         function fetchLivePrice() {
+
+           //http://localhost/ci/liveprice/update_price/BTCUSDT
             fetch('<?php echo base_url('liveprice/update_price/BTCUSDT'); ?>')
                 .then(response => {
                     if (!response.ok) {
@@ -51,11 +53,7 @@
                     if (data.status === 1) {
                       
                         const bidPrice = data.bidPrice;
-
-                      // Update the HTML element with the bidPrice
-                        document.getElementById('btcPriceValue').innerText = `$: ${bidPrice}`;
-    
-                        debugger;
+                      //  debugger;
                         const formattedPrice = `Latest BTC Price: ${bidPrice}`;
                         document.getElementById('btcPrice').innerHTML = formattedPrice;
                        // document.getElementById('lastUpdatedTime').innerText = new Date().toLocaleTimeString();
