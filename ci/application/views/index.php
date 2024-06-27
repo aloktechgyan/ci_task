@@ -90,12 +90,14 @@
                 if (lastBidPrice) {
                     const formattedPrice = `$${lastBidPrice}`;
                     document.getElementById('btcPriceValue').textContent = formattedPrice;
-                    document.getElementById('statusText').textContent = 'Connected'; // Assuming connection is established
+					
+					// To check connection is established
+                    document.getElementById('statusText').textContent = 'Connected'; 
                     document.getElementById('connectionStatus').classList.add('connected');
                 }
             }
 
-            // Start updating bid price every minute
+            // call function and start updating bid price every minute
             updateBidPricePeriodically();
         });
     </script>
