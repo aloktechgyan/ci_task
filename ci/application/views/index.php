@@ -34,12 +34,12 @@
         </div>
     </div>
     <script>
-        // create flag to track API has been called or not
+        // Create flag to track API call status
         let apiCalled = false;
+        const channel = new BroadcastChannel('btcPriceUpdate');
 
         // Function to fetch live BTC price
         function fetchLivePrice() {
-            // console.log("price function call");
             fetch('<?php echo base_url('liveprice/update_price/BTCUSDT'); ?>')
                 .then(response => {
                     if (!response.ok) {
@@ -50,7 +50,6 @@
                 .then(data => {
                     if (data.status === 1) {
                         const bidPrice = data.bidPrice;
-                        //console.log("response=>"+data);
                         const formattedPrice = `$${bidPrice}`;
                         document.getElementById('btcPriceValue').textContent = formattedPrice;
                         document.getElementById('statusText').textContent = 'Connected';
@@ -58,6 +57,10 @@
                         
                         // Store bid price in localStorage
                         localStorage.setItem('btcBidPrice', bidPrice);
+                        localStorage.setItem('lastUpdated', Date.now());
+
+                        // Broadcast the update to other tabs
+                        channel.postMessage({ bidPrice });
                     } else {
                         console.error('Error fetching live BTC price:', data.message);
                         document.getElementById('statusText').textContent = 'Disconnected';
@@ -71,35 +74,47 @@
                 });
         }
 
-        // Function to update bid price every minute
+        // Function to update bid price periodically
         function updateBidPricePeriodically() {
-            // Fetch price every 1 minute
-            setInterval(fetchLivePrice, 60000); 
+            setInterval(() => {
+                const lastUpdated = localStorage.getItem('lastUpdated');
+                if (!lastUpdated || (Date.now() - lastUpdated) > 60000) {
+                    fetchLivePrice();
+                }
+            }, 60000);
         }
 
-        // When page load then function call
+        // When page loads, fetch BTC price if not called before
         document.addEventListener('DOMContentLoaded', function() {
-            // If API has not been called before, fetch BTC price
-            if (!apiCalled) {
-                fetchLivePrice();
-                apiCalled = true;
-            } else {
-                // Retrieve and display last fetched bid price from localStorage
-                const lastBidPrice = localStorage.getItem('btcBidPrice');
-        
-                if (lastBidPrice) {
-                    const formattedPrice = `$${lastBidPrice}`;
-                    document.getElementById('btcPriceValue').textContent = formattedPrice;
-					
-					// To check connection is established
-                    document.getElementById('statusText').textContent = 'Connected'; 
-                    document.getElementById('connectionStatus').classList.add('connected');
-                }
+            const lastUpdated = localStorage.getItem('lastUpdated');
+            const bidPrice = localStorage.getItem('btcBidPrice');
+
+            if (bidPrice) {
+                const formattedPrice = `$${bidPrice}`;
+                document.getElementById('btcPriceValue').textContent = formattedPrice;
+                document.getElementById('statusText').textContent = 'Connected';
+                document.getElementById('connectionStatus').classList.add('connected');
             }
 
-            // call function and start updating bid price every minute
+            if (!apiCalled && (!lastUpdated || (Date.now() - lastUpdated) > 60000)) {
+                fetchLivePrice();
+                apiCalled = true;
+            }
+
             updateBidPricePeriodically();
         });
+
+        // Listen for price updates from other tabs
+        channel.onmessage = (event) => {
+            const { bidPrice } = event.data;
+            if (bidPrice) {
+                const formattedPrice = `$${bidPrice}`;
+                document.getElementById('btcPriceValue').textContent = formattedPrice;
+                document.getElementById('statusText').textContent = 'Connected';
+                document.getElementById('connectionStatus').classList.add('connected');
+            }
+        };
+
     </script>
 </body>
 </html>
