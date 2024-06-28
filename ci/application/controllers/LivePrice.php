@@ -61,7 +61,8 @@ class LivePrice extends CI_Controller {
             $existing_price = $this->LivePrice_model->get_live_price($symbol);
 
             if ($existing_price) {
-                $this->LivePrice_model->update_live_price($price_data);
+                //$this->LivePrice_model->update_live_price($price_data);
+				$this->LivePrice_model->insert_live_price($price_data);
             } else {
                 $this->LivePrice_model->insert_live_price($price_data);
             }
